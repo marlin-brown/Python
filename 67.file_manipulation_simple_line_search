@@ -1,0 +1,35 @@
+# exception list: https://docs.python.org/3/library/exceptions.html
+# you can use different levels of hierarchy in catching errors as shown below:
+# 'FileNotFoundError' more specific, 'OSError' more general.
+
+def readingLines():
+    count = 0
+
+    try:
+        with open('people.txt') as file_object:
+            contents = file_object.readlines()
+            for line in contents:
+                count += 5
+                print("Line " + str(count) + ": " + line)
+    #except FileNotFoundError as booboo:
+    except OSError as booboo:
+        print("We had a booboo!!")
+        print(booboo)
+
+def readingLinesAndSearch():
+
+    try:
+        with open('people.txt') as file_object:
+                  contents = file_object.readlines()
+                  for line in contents:
+                      if line.rstrip() == "Lucy":
+                          print("-> We found Lucy!\n")
+                      else:
+                          print(line)
+
+    except OSError as booboo:
+        print("We had a booboo!")
+        print(booboo)
+
+#readingLines()
+readingLinesAndSearch()
